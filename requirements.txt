@@ -1,4 +1,5 @@
 fastapi
 python-multipart
+joblib
 numpy
-xgboost
+scikit-learn

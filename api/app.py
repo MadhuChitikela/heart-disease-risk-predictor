@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import xgboost as xgb
+import joblib
 import numpy as np
 
 from fastapi.staticfiles import StaticFiles
@@ -9,9 +9,8 @@ app = FastAPI()
 
 import os
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-model_path = os.path.join(base_dir, "models", "heart_model.json")
-model = xgb.XGBClassifier()
-model.load_model(model_path)
+model_path = os.path.join(base_dir, "models", "heart_model.pkl")
+model = joblib.load(model_path)
 
 frontend_dir = os.path.join(base_dir, "frontend_web")
 app.mount("/static", StaticFiles(directory=frontend_dir), name="static")
