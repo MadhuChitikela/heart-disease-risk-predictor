@@ -1,5 +1,7 @@
 # Heart Disease Prediction System
 
+🌟 **Live AI Dashboard:** [https://heart-disease-risk-predictor-mazm.vercel.app/](https://heart-disease-risk-predictor-mazm.vercel.app/)
+
 A professional machine learning system to predict heart disease risk using clinical patient data. 
 This project follows an industry-standard ML structure suitable for a strong resume and GitHub portfolio.
 
