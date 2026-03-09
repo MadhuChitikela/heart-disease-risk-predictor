@@ -21,6 +21,6 @@ model.fit(
     verbose=10
 )
 
-joblib.dump(model, "models/heart_model.pkl")
+model.save_model("models/heart_model.json")
 
 print("Model trained and saved successfully with Early Stopping!")
