@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # The FastAPI Backend ML Service
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models  # Mount models so they can be read dynamically
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+    depends_on:
+      - ml-trainer 
+
+  # Streamlit Frontend UI
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://api:8000/predict
+    depends_on:
+      - api
+
+  # (Optional) Data Processor and ML Trainer - Runs once and shuts down after training
+  ml-trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.trainer
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models

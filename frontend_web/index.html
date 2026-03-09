@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeartRisk AI | Advanced Cardiovascular Prediction</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <!-- Background Decor -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="heartbeat-icon">❤️</div>
+                <h1>HeartRisk <span>AI</span></h1>
+            </div>
+            <p>Advanced Clinical Cardiovascular Prediction Engine powered by XGBoost</p>
+        </header>
+
+        <main class="dashboard">
+            <form id="prediction-form" class="glass-panel">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" required min="1" max="120" placeholder="e.g. 55">
+                    </div>
+                    <div class="input-group">
+                        <label for="sex">Sex</label>
+                        <select id="sex" required>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="cp">Chest Pain Type</label>
+                        <select id="cp" required>
+                            <option value="0">Typical Angina (Heart-related)</option>
+                            <option value="1">Atypical Angina (Non-classic)</option>
+                            <option value="2">Non-anginal Pain (Other causes)</option>
+                            <option value="3">Asymptomatic (No pain)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="trestbps">Resting BP (mm Hg)</label>
+                        <input type="number" id="trestbps" required placeholder="e.g. 120">
+                    </div>
+                    <div class="input-group">
+                        <label for="chol">Serum Cholesterol (mg/dl)</label>
+                        <input type="number" id="chol" required placeholder="e.g. 200">
+                    </div>
+                    <div class="input-group">
+                        <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+                        <select id="fbs" required>
+                            <option value="0">Healthy / Normal (False)</option>
+                            <option value="1">Elevated (True)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="restecg">Resting ECG Results</label>
+                        <select id="restecg" required>
+                            <option value="0">Normal</option>
+                            <option value="1">ST-T Wave Abnormality (Minor issue)</option>
+                            <option value="2">LV Hypertrophy (Enlarged muscle)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="thalach">Max Heart Rate Achieved</label>
+                        <input type="number" id="thalach" required placeholder="e.g. 150">
+                    </div>
+                    <div class="input-group">
+                        <label for="exang">Exercise Induced Angina</label>
+                        <select id="exang" required>
+                            <option value="0">No (No pain during exercise)</option>
+                            <option value="1">Yes (Pain during exercise)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="oldpeak">ST Depression (Oldpeak)</label>
+                        <input type="number" step="0.1" id="oldpeak" required placeholder="e.g. 1.0">
+                    </div>
+                    <div class="input-group">
+                        <label for="slope">ST Segment Slope</label>
+                        <select id="slope" required>
+                            <option value="0">Upsloping (Excellent recovery)</option>
+                            <option value="1">Flat (Typical)</option>
+                            <option value="2">Downsloping (Signs of stress)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ca">Major Vessels Colored (Fluoroscopy)</label>
+                        <select id="ca" required>
+                            <option value="0">None (0 vessels)</option>
+                            <option value="1">1 vessel</option>
+                            <option value="2">2 vessels</option>
+                            <option value="3">3 vessels</option>
+                            <option value="4">4 vessels</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="thal">Thalassemia (Blood Disorder)</label>
+                        <select id="thal" required>
+                            <option value="0">Normal (Healthy blood flow)</option>
+                            <option value="1">Fixed Defect (No blood flow in areas)</option>
+                            <option value="2">Reversable Defect (Abnormal flow)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" id="submit-btn">
+                        <span class="btn-text">Run Prediction Engine</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                </div>
+            </form>
+
+            <div id="result-modal" class="glass-panel result-panel hidden">
+                <div id="result-icon"></div>
+                <h2 id="result-title">Analyzing...</h2>
+                <p id="result-desc"></p>
+                <div id="metrics" class="metrics"></div>
+                <button id="reset-btn" class="secondary-btn">Evaluate New Patient</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
